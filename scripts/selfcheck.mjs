@@ -32,6 +32,26 @@ function visible(html) {
 
 const BANNED = ['Willkommen bei', 'Genuss', 'Genusserlebnis', 'Geschmackserlebnis', 'Gaumenfreude', 'mit Liebe gemacht', 'mit Leidenschaft', 'Tauchen Sie ein', 'unvergesslich', 'einzigartig', 'authentisch', 'die besten Döner', 'Qualität, die man schmeckt', 'kulinarische Reise', 'Entdecke', 'Premium', 'Erlebnis'];
 
+// Dish and category names come from the owner's price list, not from copy written for this site.
+// Scanning them for marketing language only produces false positives (e.g. "Premium Pommes").
+const MENUNAMEN = [
+  ...menu.kategorien.map((k) => k.name),
+  ...menu.kategorien.flatMap((k) => k.artikel.map((a) => a.name)),
+].sort((a, b) => b.length - a.length);
+
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const ohneMenuNamen = (text) => MENUNAMEN.reduce((t, n) => t.replaceAll(n, ' '), text);
+
+// A <link> only costs a request for rel values the browser actually fetches. Metadata rels such as
+// canonical never leave the page, so counting them hid the real third-party requests in the noise.
+const REL_OHNE_REQUEST = new Set(['canonical', 'alternate', 'author', 'license', 'next', 'prev', 'me']);
+function istLadeRequest(tag) {
+  if (!/^<link/i.test(tag)) return true;
+  const rel = tag.match(/\srel="([^"]*)"/i)?.[1].trim().toLowerCase();
+  // Unknown rel counts as a request: for a privacy check, err towards reporting.
+  return !rel || !rel.split(/\s+/).every((r) => REL_OHNE_REQUEST.has(r));
+}
+
 const html = await files(join(root, 'dist'), ['.html']);
 const css = [...(await files(join(root, 'dist'), ['.css'])), ...(await files(join(root, 'src'), ['.css', '.astro']))];
 const js = await files(join(root, 'dist'), ['.js']);
@@ -46,10 +66,13 @@ for (const f of html) {
   allText += t;
   for (const m of t.matchAll(/.{0,30}[–—].{0,30}/g)) add('1 Gedankenstriche', `${rel}: ${m[0]}`);
   for (const m of raw.matchAll(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu)) add('2 Emoji', `${rel}: ${m[0]}`);
-  for (const w of BANNED) for (const m of t.matchAll(new RegExp(`.{0,25}${w}.{0,25}`, 'gi'))) add('5 Verbotene Wörter', `${rel}: ${m[0].trim()}`);
+  const tOhneNamen = ohneMenuNamen(t);
+  for (const w of BANNED)
+    for (const m of tOhneNamen.matchAll(new RegExp(`.{0,25}${esc(w)}.{0,25}`, 'gi'))) add('5 Verbotene Wörter', `${rel}: ${m[0].trim()}`);
   for (const m of t.matchAll(/.{0,20}(lorem|TODO|fehlt noch|\[[^\]\n]{2,40}\]).{0,50}/gi)) add('6 Platzhalter', `${rel}: ${m[0].trim()}`);
   for (const m of raw.matchAll(/(?:src|href)="(https?:\/\/[^"/]+)/g)) add('7 Externe Ziele (nur Links, keine Requests)', `${rel}: ${m[1]}`);
-  for (const m of raw.matchAll(/<(?:script|link|img|iframe)[^>]+(?:src|href)="https?:\/\/[^"]+"/g)) add('7 Externe Requests beim Laden', `${rel}: ${m[0]}`);
+  for (const m of raw.matchAll(/<(?:script|link|img|iframe)[^>]+(?:src|href)="https?:\/\/[^"]+"[^>]*>?/g))
+    if (istLadeRequest(m[0])) add('7 Externe Requests beim Laden', `${rel}: ${m[0]}`);
   for (const m of t.matchAll(/.{0,30}!.{0,10}/g)) add('Ausrufezeichen', `${rel}: ${m[0]}`);
   if (/Sie\b|Ihnen\b|Ihre?\b/.test(t)) for (const m of t.matchAll(/.{0,30}\b(Sie|Ihnen|Ihre?)\b.{0,30}/g)) add('9 Sie-Form', `${rel}: ${m[0]}`);
 }

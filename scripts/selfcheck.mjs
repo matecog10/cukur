@@ -82,10 +82,10 @@ for (const f of css) {
   for (const m of raw.matchAll(/border-radius:\s*([^;}"]+)/g)) if (!/^(0|[1-4]px)\s*$/.test(m[1].trim())) add('4 border-radius > 4px', `${f.slice(root.length)}: ${m[0]}`);
 }
 
-// 8: homepage "ab" prices vs menu.json
+// 8: homepage "ab" prices vs menu.json. Must match the featured blocks in src/pages/index.astro.
 const home = await readFile(join(root, 'dist/index.html'), 'utf8');
 const fmt = (n) => `${n.toFixed(2).replace('.', ',')} €`;
-for (const id of ['doener', 'pizza', 'falafel']) {
+for (const id of ['pizza', 'schnitzel', 'salate']) {
   const k = menu.kategorien.find((c) => c.id === id);
   const min = Math.min(...k.artikel.flatMap((a) => a.preise.map((p) => p.preis)));
   const shown = [...home.matchAll(new RegExp(`href="/speisekarte/#${id}"`, 'g'))].length > 0;

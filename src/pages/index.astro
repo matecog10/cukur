@@ -17,32 +17,36 @@ const tel = telLink(betrieb);
 const zeiten = kompakteZeitenText(betrieb.oeffnungszeiten);
 const { lieferando, telefonisch } = betrieb.bestellen;
 
+// Only categories with a photo belong here: an empty "Foto folgt" box on the landing page reads as
+// a half-finished site. Döner and Falafel move to the "Außerdem auf der Karte" line below until the
+// owner supplies real photos of them (src/assets/fotos/doener.jpg, falafel.jpg).
 const bloecke = [
-  {
-    id: 'doener',
-    titel: 'Döner',
-    text: 'Hühnerfleisch im Brot, als Dürüm im hausgemachten Brot, als Bowl oder auf dem Teller.',
-    // Real photo from the owner: src/assets/fotos/doener.jpg
-    foto: 'doener',
-    symbolbild: false,
-    alt: 'Döner von Çukur',
-  },
   {
     id: 'pizza',
     titel: 'Pizza',
+    link: 'Zur Pizza-Karte',
     text: 'In 24, 33 oder 50 cm. Auch als Döner Pizza mit Hühnerfleisch.',
     foto: 'diavolo',
     symbolbild: true,
     alt: 'Symbolbild: Pizza Diavolo mit Salami, scharfen Pfefferoni und Zwiebel',
   },
   {
-    id: 'falafel',
-    titel: 'Falafel',
-    text: 'Im Brot mit Hummus, als Dürüm, als Bowl oder auf dem Teller.',
-    // Real photo from the owner: src/assets/fotos/falafel.jpg
-    foto: 'falafel',
-    symbolbild: false,
-    alt: 'Falafel von Çukur',
+    id: 'schnitzel',
+    titel: 'Schnitzel',
+    link: 'Zur Schnitzel-Karte',
+    text: 'Als Semmel, als Dürüm, als Bowl oder auf dem Teller.',
+    foto: 'schnitzelsemmel',
+    symbolbild: true,
+    alt: 'Symbolbild: Schnitzelsemmel mit Blattsalat, Tomate und Zwiebel',
+  },
+  {
+    id: 'salate',
+    titel: 'Salate',
+    link: 'Zu den Salaten',
+    text: 'Gemischter Salat, Thunfischsalat und Hirtensalat.',
+    foto: 'gemischter-salat',
+    symbolbild: true,
+    alt: 'Symbolbild: gemischter Salat mit Blattsalat, Tomaten, Gurke und Radieschen',
   },
 ];
 
@@ -108,7 +112,7 @@ const description = `Çukur am ${betrieb.adresse.strasse}, ${betrieb.adresse.plz
                   </span>
                 </p>
                 <a class="kat-link" href={`/speisekarte/#${b.id}`}>
-                  Zur {b.titel}-Karte
+                  {b.link}
                 </a>
               </div>
             </article>
@@ -116,7 +120,7 @@ const description = `Çukur am ${betrieb.adresse.strasse}, ${betrieb.adresse.plz
         }
       </div>
       <p class="weitere" data-reveal="blur">
-        Außerdem auf der Karte: vegetarische Gerichte, Schnitzel, Pide, Salate, Pommes und Getränke.
+        Außerdem auf der Karte: Döner, Dürüm, Falafel, vegetarische Gerichte, Pide, Pommes und Getränke.{' '}
         <a href="/speisekarte/">Ganze Speisekarte</a>
       </p>
     </div>

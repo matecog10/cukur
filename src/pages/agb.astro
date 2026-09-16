@@ -2,6 +2,7 @@
 import Legal from '../layouts/Legal.astro';
 import Fehlt from '../components/Fehlt.astro';
 import betrieb from '../data/betrieb.json';
+import { adresseText } from '../lib/links.mjs';
 ---
 
 <Legal
@@ -11,9 +12,9 @@ import betrieb from '../data/betrieb.json';
 >
   <h2>1. Geltungsbereich</h2>
   <p>
-    Diese Bedingungen gelten für Bestellungen bei {betrieb.name}, {betrieb.adresse.strasse}, {betrieb.adresse.plz}
-    {betrieb.adresse.ort}, vor Ort an der Theke und telefonisch, soweit telefonische Bestellungen angeboten werden. Für
-    Bestellungen über Lieferando gelten zusätzlich die Bedingungen von Lieferando.at.
+    Diese Bedingungen gelten für Bestellungen bei {betrieb.name}, {adresseText(betrieb)}, vor Ort an der Theke und
+    telefonisch, soweit telefonische Bestellungen angeboten werden. Für Bestellungen über Lieferando gelten zusätzlich
+    die Bedingungen von Lieferando.at.
   </p>
 
   <h2>2. Vertragsabschluss</h2>

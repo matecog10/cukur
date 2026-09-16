@@ -16,6 +16,14 @@ interface Props {
   class?: string;
 }
 
+// Never emit an empty widths list: a <source> with an empty srcset is invalid markup and would
+// silently drop the AVIF and WebP variants. For an image smaller than every requested width,
+// its own width is the only sensible candidate.
+const passendeBreiten = (gewuenscht: number[], max: number) => {
+  const passend = gewuenscht.filter((w) => w <= max);
+  return passend.length ? passend : [max];
+};
+
 const {
   src,
   alt,
@@ -37,7 +45,7 @@ const {
         alt={alt}
         formats={['avif', 'webp']}
         fallbackFormat="jpg"
-        widths={widths.filter((w) => w <= src.width)}
+        widths={passendeBreiten(widths, src.width)}
         sizes={sizes}
         loading={eager ? 'eager' : 'lazy'}
         fetchpriority={eager ? 'high' : undefined}

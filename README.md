@@ -4,7 +4,7 @@ Statische Website für Çukur, Wallensteinplatz 3-4, 1200 Wien. Gebaut mit Astro
 
 ## Starten
 
-Voraussetzung: Node.js 20 oder neuer.
+Voraussetzung: Node.js 22.12 oder neuer (von Astro 7 vorausgesetzt).
 
 ```sh
 npm install

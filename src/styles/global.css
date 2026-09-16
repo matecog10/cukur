@@ -391,6 +391,14 @@ main:focus {
   max-width: 18ch;
   margin-bottom: 20px;
 }
+.hero-claim {
+  margin-bottom: 20px;
+  padding-left: 12px;
+  border-left: 3px solid var(--accent);
+  font-size: 19px;
+  font-weight: 600;
+  max-width: 46ch;
+}
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
@@ -1009,6 +1017,9 @@ main:focus {
 @media (prefers-reduced-motion: no-preference) {
   .hero h1 {
     animation: rise-blur 700ms var(--ease) both;
+  }
+  .hero-claim {
+    animation: rise 600ms var(--ease) 250ms both;
   }
   .hero-meta {
     animation: rise 600ms var(--ease) 350ms both;

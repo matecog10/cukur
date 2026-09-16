@@ -1,0 +1,222 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import Status from '../components/Status.astro';
+import Oeffnungszeiten from '../components/Oeffnungszeiten.astro';
+import Karte from '../components/Karte.astro';
+import Icon from '../components/Icon.astro';
+import betrieb from '../data/betrieb.json';
+import { abPreis, kategorien } from '../lib/menu.mjs';
+import { foto } from '../lib/fotos';
+import { preis, kompakteZeitenText } from '../lib/format.mjs';
+import { adresseText, mapsSuche, telLink } from '../lib/links.mjs';
+import { restaurantJsonLd } from '../lib/jsonld.mjs';
+
+const adresse = adresseText(betrieb);
+const tel = telLink(betrieb);
+const zeiten = kompakteZeitenText(betrieb.oeffnungszeiten);
+const { lieferando, telefonisch } = betrieb.bestellen;
+
+const bloecke = [
+  {
+    id: 'doener',
+    titel: 'Döner',
+    text: 'Hühnerfleisch im Brot, als Dürüm im hausgemachten Brot, als Bowl oder auf dem Teller.',
+    // Real photo from the owner: src/assets/fotos/doener.jpg
+    foto: 'doener',
+    symbolbild: false,
+    alt: 'Döner von Çukur',
+  },
+  {
+    id: 'pizza',
+    titel: 'Pizza',
+    text: 'In 24, 33 oder 50 cm. Auch als Döner Pizza mit Hühnerfleisch.',
+    foto: 'diavolo',
+    symbolbild: true,
+    alt: 'Symbolbild: Pizza Diavolo mit Salami, scharfen Pfefferoni und Zwiebel',
+  },
+  {
+    id: 'falafel',
+    titel: 'Falafel',
+    text: 'Im Brot mit Hummus, als Dürüm, als Bowl oder auf dem Teller.',
+    // Real photo from the owner: src/assets/fotos/falafel.jpg
+    foto: 'falafel',
+    symbolbild: false,
+    alt: 'Falafel von Çukur',
+  },
+];
+
+// Every menu item that has an image, for the marquee.
+const galerie = kategorien.flatMap((k) =>
+  k.artikel
+    .filter((a) => a.foto && foto(a.foto))
+    .map((a) => ({
+      name: a.name,
+      alt: `Symbolbild: ${a.name}${a.beschreibung ? `, ${a.beschreibung}` : ''}`,
+      bild: foto(a.foto),
+      kat: k.id,
+      ab: Math.min(...a.preise.map((p) => p.preis)),
+      mehrere: a.preise.length > 1,
+    })),
+);
+
+const title = 'Çukur | Döner, Pizza und Falafel in Wien 1200';
+const description = `Çukur am ${betrieb.adresse.strasse}, ${betrieb.adresse.plz} Wien: Döner, Dürüm, Pizza, Falafel und Pide. ${zeiten}. Abholen oder über Lieferando bestellen.`;
+---
+
+<Layout title={title} description={description} jsonLd={restaurantJsonLd(betrieb, Astro.site)}>
+  <section class="hero on-dark" aria-labelledby="hero-h">
+    <div class="wrap">
+      <h1 id="hero-h">Döner, Pizza und Falafel am Wallensteinplatz</h1>
+      <p class="hero-meta">
+        <a href={mapsSuche(adresse)}>{adresse}</a>
+        <span aria-hidden="true">·</span>
+        <Status />
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/speisekarte/">Speisekarte ansehen</a>
+        {
+          lieferando ? (
+            <a class="btn btn-secondary" href={lieferando} rel="noopener">
+              Online bestellen
+            </a>
+          ) : (
+            <a class="btn btn-secondary" href={tel}>
+              Anrufen
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section kategorien-section" aria-labelledby="gerichte-h">
+    <div class="wrap">
+      <h2 id="gerichte-h" class="visually-hidden">Gerichte</h2>
+      <div class="kategorien">
+        {
+          bloecke.map((b, i) => (
+            <article class="kat-block" data-reveal="up" style={`--i: ${i}`}>
+              <Photo src={foto(b.foto)} alt={b.alt} symbolbild={b.symbolbild} />
+              <div class="kat-body">
+                <h3>{b.titel}</h3>
+                <p>{b.text}</p>
+                <p class="ab-preis">
+                  <span class="visually-hidden">ab {preis(abPreis(b.id))}</span>
+                  <span aria-hidden="true" data-scramble>
+                    ab {preis(abPreis(b.id))}
+                  </span>
+                </p>
+                <a class="kat-link" href={`/speisekarte/#${b.id}`}>
+                  Zur {b.titel}-Karte
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <p class="weitere" data-reveal="blur">
+        Außerdem auf der Karte: vegetarische Gerichte, Schnitzel, Pide, Salate, Pommes und Getränke.
+        <a href="/speisekarte/">Ganze Speisekarte</a>
+      </p>
+    </div>
+  </section>
+
+  {
+    galerie.length > 0 && (
+      <section class="galerie-section" aria-labelledby="galerie-h">
+        <div class="wrap galerie-head">
+          <h2 id="galerie-h" data-reveal="left">
+            Aus der Speisekarte
+          </h2>
+          <p class="small muted" data-reveal="left" style="--i: 1">
+            Alle Bilder sind Symbolbilder.
+          </p>
+        </div>
+        <div class="marquee" data-reveal="up">
+          <ul class="marquee-track">
+            {[...galerie, ...galerie].map((g, i) => {
+              const kopie = i >= galerie.length;
+              return (
+                <li class="dish" aria-hidden={kopie ? 'true' : undefined}>
+                  <a href={`/speisekarte/#${g.kat}`} tabindex={kopie ? -1 : undefined}>
+                    <Photo src={g.bild} alt={kopie ? '' : g.alt} widths={[320, 640]} sizes="260px" symbolbild />
+                    <span class="dish-text">
+                      <span class="dish-name">{g.name}</span>
+                      <span class="dish-preis num">
+                        {g.mehrere && 'ab '}
+                        {preis(g.ab)}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section section-surface" aria-labelledby="bestellen-h">
+    <div class="wrap">
+      <h2 id="bestellen-h" data-reveal="left">Bestellen</h2>
+      <div class="info-grid">
+        <div class="info-block" data-reveal="blur">
+          <h3>Abholen</h3>
+          <ul class="info-list">
+            <li><Icon name="pin" /><a href={mapsSuche(adresse)}>{adresse}</a></li>
+            <li>
+              <Icon name="phone" />
+              <span>{telefonisch === true && 'Bestellen unter '}<a href={tel}>{betrieb.telefon.anzeige}</a></span>
+            </li>
+            <li><Icon name="clock" /><span>{zeiten}</span></li>
+          </ul>
+          {betrieb.bestellen.wartezeit && <p>{betrieb.bestellen.wartezeit}</p>}
+        </div>
+        {
+          lieferando && (
+            <div class="info-block" data-reveal="blur" style="--i: 1">
+              <h3>Liefern</h3>
+              <p>
+                Lieferung bestellst du über Lieferando. Liefergebiet, Mindestbestellwert und Liefergebühr zeigt dir
+                Lieferando, sobald du deine Adresse eingibst.
+              </p>
+              <p>
+                <a class="btn btn-secondary" href={lieferando} rel="noopener">
+                  Bei Lieferando bestellen
+                </a>
+              </p>
+            </div>
+          )
+        }
+        {
+          betrieb.bezahlen.length > 0 && (
+            <div class="info-block" data-reveal="blur" style="--i: 2">
+              <h3>Bezahlen</h3>
+              <ul>
+                {betrieb.bezahlen.map((z) => (
+                  <li>{z}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="zeiten-h">
+    <div class="wrap">
+      <h2 id="zeiten-h" data-reveal="left">Öffnungszeiten und Anfahrt</h2>
+      <div class="split">
+        <div data-reveal="blur">
+          <Oeffnungszeiten />
+        </div>
+        <div data-reveal="up" style="--i: 1">
+          <Karte />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

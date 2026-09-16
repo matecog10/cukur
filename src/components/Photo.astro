@@ -1,0 +1,52 @@
+---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+// Pass `src` (an imported photo from src/assets/fotos) once a photo exists.
+// Until then a neutral "Foto folgt" box keeps the layout stable.
+// `symbolbild` adds a visible label for images that do not show this shop's own food.
+interface Props {
+  src?: ImageMetadata;
+  alt: string;
+  ratio?: string;
+  sizes?: string;
+  widths?: number[];
+  eager?: boolean;
+  symbolbild?: boolean;
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  ratio = '4 / 3',
+  sizes = '(min-width: 900px) 33vw, 100vw',
+  widths = [480, 800, 1200, 1600],
+  eager = false,
+  symbolbild = false,
+  class: className,
+} = Astro.props;
+---
+
+{
+  src ? (
+    <figure class:list={['photo-fig', className]} style={`aspect-ratio: ${ratio}`}>
+      <Picture
+        class="photo"
+        src={src}
+        alt={alt}
+        formats={['avif', 'webp']}
+        fallbackFormat="jpg"
+        widths={widths.filter((w) => w <= src.width)}
+        sizes={sizes}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : undefined}
+      />
+      {symbolbild && <figcaption class="symbolbild">Symbolbild</figcaption>}
+    </figure>
+  ) : (
+    <div class:list={['photo-ph', className]} style={`aspect-ratio: ${ratio}`}>
+      <span>Foto folgt</span>
+    </div>
+  )
+}

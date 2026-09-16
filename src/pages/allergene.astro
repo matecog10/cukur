@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import betrieb from '../data/betrieb.json';
+import { hatAllergendaten } from '../lib/menu.mjs';
+import { ALLERGENE, ZUSATZSTOFFE } from '../lib/allergene.mjs';
+import { telLink } from '../lib/links.mjs';
+---
+
+<Layout
+  title="Allergene und Zusatzstoffe | Çukur Wien 1200"
+  description="Allergene und Zusatzstoffe der Gerichte von Çukur am Wallensteinplatz, 1200 Wien."
+>
+  <div class="wrap legal">
+    <h1>Allergene und Zusatzstoffe</h1>
+    {
+      hatAllergendaten ? (
+        <>
+          <p>Die Buchstaben und Zahlen stehen auf der Speisekarte klein hinter dem Namen des Gerichts.</p>
+          <h2>Allergene</h2>
+          <dl class="legende">
+            {ALLERGENE.map(([code, text]) => (
+              <>
+                <dt>{code}</dt>
+                <dd>{text}</dd>
+              </>
+            ))}
+          </dl>
+          <h2>Zusatzstoffe</h2>
+          <dl class="legende">
+            {ZUSATZSTOFFE.map(([code, text]) => (
+              <>
+                <dt>{code}</dt>
+                <dd>{text}</dd>
+              </>
+            ))}
+          </dl>
+        </>
+      ) : (
+        <p>
+          Allergeninformationen bekommst du an der Theke oder unter <a href={telLink(betrieb)}>{betrieb.telefon.anzeige}</a>.
+        </p>
+      )
+    }
+    <p><a href="/speisekarte/">Zur Speisekarte</a></p>
+  </div>
+</Layout>

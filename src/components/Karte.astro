@@ -1,0 +1,24 @@
+---
+import betrieb from '../data/betrieb.json';
+import { adresseText, mapsEmbed, mapsRoute } from '../lib/links.mjs';
+import Icon from './Icon.astro';
+
+const adresse = adresseText(betrieb);
+---
+
+<div>
+  <div class="karte" data-karte data-src={mapsEmbed(adresse)} data-titel={`Karte: ${betrieb.name}, ${adresse}`}>
+    <p class="karte-adresse"><Icon name="pin" />{adresse}</p>
+    <div class="karte-consent" hidden>
+      <button type="button" class="btn btn-secondary">Karte laden (Google Maps)</button>
+      <p class="small">Beim Laden werden Daten an Google übertragen.</p>
+    </div>
+  </div>
+  <p class="karte-route">
+    <a class="btn btn-primary" href={mapsRoute(adresse)}>Route planen</a>
+  </p>
+</div>
+
+<script>
+  import '../scripts/karte.js';
+</script>

@@ -1,0 +1,17 @@
+---
+import betrieb from '../data/betrieb.json';
+import { kompakteZeitenText } from '../lib/format.mjs';
+
+// Without JavaScript the plain hours stay visible; the script swaps in the live status.
+---
+
+<span class="status-wrap">
+  <span class="status-dot" aria-hidden="true"></span>
+  <span class="status" data-oeffnungsstatus data-plan={JSON.stringify(betrieb.oeffnungszeiten)} data-zeitzone={betrieb.zeitzone}>
+    {kompakteZeitenText(betrieb.oeffnungszeiten)}
+  </span>
+</span>
+
+<script>
+  import '../scripts/status.js';
+</script>

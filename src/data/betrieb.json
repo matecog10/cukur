@@ -1,0 +1,37 @@
+{
+  "name": "Çukur",
+  "inhaber": "",
+  "rechtsform": "",
+  "uid": "",
+  "firmenbuch": "",
+  "email": "",
+  "hosting": "",
+  "adresse": {
+    "strasse": "Wallensteinplatz 3-4",
+    "plz": "1200",
+    "ort": "Wien",
+    "land": "AT"
+  },
+  "geo": { "lat": 48.229843, "lng": 16.3717 },
+  "telefon": { "anzeige": "0670 1853282", "e164": "+436701853282" },
+  "zeitzone": "Europe/Vienna",
+  "preisspanne": "€",
+  "oeffnungszeiten": [
+    { "tag": "Montag", "zeiten": [{ "von": "11:00", "bis": "21:30" }] },
+    { "tag": "Dienstag", "zeiten": [{ "von": "11:00", "bis": "21:30" }] },
+    { "tag": "Mittwoch", "zeiten": [{ "von": "11:00", "bis": "21:30" }] },
+    { "tag": "Donnerstag", "zeiten": [{ "von": "11:00", "bis": "21:30" }] },
+    { "tag": "Freitag", "zeiten": [{ "von": "11:00", "bis": "21:30" }] },
+    { "tag": "Samstag", "zeiten": [{ "von": "11:00", "bis": "21:30" }] },
+    { "tag": "Sonntag", "zeiten": [{ "von": "11:00", "bis": "21:30" }] }
+  ],
+  "feiertage": "",
+  "bestellen": {
+    "abholung": true,
+    "telefonisch": null,
+    "wartezeit": "",
+    "lieferando": "https://www.lieferando.at/speisekarte/cukur-wallensteinstrasse"
+  },
+  "bezahlen": [],
+  "sitzplaetze": ""
+}

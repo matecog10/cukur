@@ -1,0 +1,39 @@
+---
+import betrieb from '../data/betrieb.json';
+import { kompakteZeiten } from '../lib/format.mjs';
+import { adresseText, mapsSuche, telLink } from '../lib/links.mjs';
+
+const zeiten = kompakteZeiten(betrieb.oeffnungszeiten);
+const jahr = new Date().getFullYear();
+const rechtliches = [
+  { href: '/impressum/', label: 'Impressum' },
+  { href: '/datenschutz/', label: 'Datenschutz' },
+  { href: '/agb/', label: 'AGB' },
+  { href: '/allergene/', label: 'Allergene' },
+];
+---
+
+<footer class="site-footer on-dark" data-reveal="fade">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-name">{betrieb.name}</p>
+        <p>
+          <a href={mapsSuche(adresseText(betrieb))}>{betrieb.adresse.strasse}<br />{betrieb.adresse.plz} {betrieb.adresse.ort}</a>
+        </p>
+        <p><a href={telLink(betrieb)}>{betrieb.telefon.anzeige}</a></p>
+        {betrieb.email && <p><a href={`mailto:${betrieb.email}`}>{betrieb.email}</a></p>}
+      </div>
+      <div>
+        <p class="footer-label">Öffnungszeiten</p>
+        {zeiten.map((z) => <p>{z.tage}: {z.text}</p>)}
+      </div>
+      <nav aria-label="Rechtliches">
+        <ul class="footer-links">
+          {rechtliches.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+    <p class="copyright">© {jahr} {betrieb.inhaber || betrieb.name}</p>
+  </div>
+</footer>

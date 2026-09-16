@@ -1,0 +1,25 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  h1: string;
+}
+
+const { title, description, h1 } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <div class="wrap legal">
+    <h1>{h1}</h1>
+    <div class="entwurf">
+      <p><strong>Entwurf, nicht rechtsverbindlich.</strong></p>
+      <p>
+        Dieser Text muss vor dem Livegang von einer Rechtsanwältin, einem Rechtsanwalt oder mit einem seriösen Generator
+        geprüft werden, zum Beispiel mit den Mustern der Wirtschaftskammer Österreich (WKO). Markierte Stellen fehlen noch.
+      </p>
+    </div>
+    <slot />
+  </div>
+</Layout>

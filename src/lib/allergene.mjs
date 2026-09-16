@@ -1,0 +1,31 @@
+export const ALLERGENE = [
+  ['A', 'Glutenhaltiges Getreide'],
+  ['B', 'Krebstiere'],
+  ['C', 'Eier'],
+  ['D', 'Fisch'],
+  ['E', 'Erdnüsse'],
+  ['F', 'Soja'],
+  ['G', 'Milch und Laktose'],
+  ['H', 'Schalenfrüchte'],
+  ['L', 'Sellerie'],
+  ['M', 'Senf'],
+  ['N', 'Sesam'],
+  ['O', 'Schwefeldioxid und Sulfite'],
+  ['P', 'Lupinen'],
+  ['R', 'Weichtiere'],
+];
+
+export const ZUSATZSTOFFE = [
+  ['1', 'mit Farbstoff'],
+  ['2', 'mit Konservierungsstoff'],
+  ['3', 'mit Antioxidationsmittel'],
+  ['4', 'mit Geschmacksverstärker'],
+  ['5', 'geschwefelt'],
+  ['6', 'geschwärzt'],
+  ['7', 'gewachst'],
+  ['8', 'mit Phosphat'],
+  ['9', 'mit Süßungsmittel'],
+  ['10', 'enthält eine Phenylalaninquelle'],
+  ['11', 'koffeinhaltig'],
+  ['12', 'chininhaltig'],
+];

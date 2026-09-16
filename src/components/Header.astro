@@ -1,0 +1,46 @@
+---
+import betrieb from '../data/betrieb.json';
+import { telLink } from '../lib/links.mjs';
+import Icon from './Icon.astro';
+import Wordmark from './Wordmark.astro';
+
+const path = Astro.url.pathname;
+const links = [
+  { href: '/speisekarte/', label: 'Speisekarte' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+const tel = telLink(betrieb);
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark-link" href="/" aria-label={`${betrieb.name}, zur Startseite`}>
+      <Wordmark />
+    </a>
+    <nav id="hauptnav" class="hauptnav" aria-label="Hauptnavigation">
+      <ul>
+        {
+          links.map((l, i) => (
+            <li style={`--i: ${i}`}>
+              <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="nav-tel" style={`--i: ${links.length}`}>
+          <a href={tel}><Icon name="phone" />{betrieb.telefon.anzeige}</a>
+        </li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary btn-call" href={tel}><Icon name="phone" />Anrufen</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptnav" aria-label="Navigation öffnen">
+      <Icon name="menu" class="icon-open" />
+      <Icon name="x" class="icon-close" />
+    </button>
+  </div>
+</header>
+
+<script>
+  import '../scripts/nav.js';
+</script>

@@ -1,0 +1,42 @@
+---
+import Legal from '../layouts/Legal.astro';
+import Fehlt from '../components/Fehlt.astro';
+import betrieb from '../data/betrieb.json';
+import { telLink } from '../lib/links.mjs';
+---
+
+<Legal title="Impressum | Çukur Wien" description="Impressum von Çukur, Wallensteinplatz 3-4, 1200 Wien." h1="Impressum">
+  <p>Informationen nach § 5 E-Commerce-Gesetz (ECG), § 14 Unternehmensgesetzbuch (UGB) und Offenlegung nach § 25 Mediengesetz (MedienG).</p>
+
+  <h2>Medieninhaber und Betreiber</h2>
+  <p>
+    {betrieb.name}<br />
+    Inhaber: {betrieb.inhaber || <Fehlt>voller Name der Inhaberin oder des Inhabers</Fehlt>}<br />
+    Rechtsform: {betrieb.rechtsform || <Fehlt>Rechtsform, zum Beispiel Einzelunternehmen</Fehlt>}<br />
+    {betrieb.adresse.strasse}<br />
+    {betrieb.adresse.plz} {betrieb.adresse.ort}, Österreich
+  </p>
+
+  <h2>Kontakt</h2>
+  <p>
+    Telefon: <a href={telLink(betrieb)}>{betrieb.telefon.anzeige}</a><br />
+    E-Mail: {betrieb.email ? <a href={`mailto:${betrieb.email}`}>{betrieb.email}</a> : <Fehlt>E-Mail-Adresse (nach ECG Pflicht)</Fehlt>}
+  </p>
+
+  <h2>Unternehmensdaten</h2>
+  <p>
+    Unternehmensgegenstand: Gastgewerbe (Imbiss)<br />
+    UID-Nummer: {betrieb.uid || <Fehlt>UID-Nummer, falls vorhanden, sonst Zeile löschen</Fehlt>}<br />
+    Firmenbuch: {betrieb.firmenbuch || <Fehlt>Firmenbuchnummer und Firmenbuchgericht, nur falls eingetragen</Fehlt>}
+  </p>
+
+  <h2>Gewerberecht</h2>
+  <p>
+    Gewerbebehörde: <Fehlt>zuständige Behörde prüfen, voraussichtlich Magistratisches Bezirksamt für den 20. Bezirk</Fehlt><br />
+    Kammer: <Fehlt>Mitgliedschaft prüfen, voraussichtlich Wirtschaftskammer Wien, Fachgruppe Gastronomie</Fehlt><br />
+    Anwendbare Vorschriften: Gewerbeordnung, abrufbar unter <a href="https://www.ris.bka.gv.at">www.ris.bka.gv.at</a>
+  </p>
+
+  <h2>Grundlegende Richtung (§ 25 Abs. 4 MedienG)</h2>
+  <p>Informationen über Speisen, Preise, Öffnungszeiten und Kontakt von {betrieb.name}.</p>
+</Legal>

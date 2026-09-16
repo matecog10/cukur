@@ -1,0 +1,58 @@
+---
+import Legal from '../layouts/Legal.astro';
+import Fehlt from '../components/Fehlt.astro';
+import betrieb from '../data/betrieb.json';
+---
+
+<Legal
+  title="AGB | Çukur Wien"
+  description="Allgemeine Geschäftsbedingungen für Bestellungen bei Çukur, Wallensteinplatz 3-4, 1200 Wien."
+  h1="Allgemeine Geschäftsbedingungen"
+>
+  <h2>1. Geltungsbereich</h2>
+  <p>
+    Diese Bedingungen gelten für Bestellungen bei {betrieb.name}, {betrieb.adresse.strasse}, {betrieb.adresse.plz}
+    {betrieb.adresse.ort}, vor Ort an der Theke und telefonisch, soweit telefonische Bestellungen angeboten werden. Für
+    Bestellungen über Lieferando gelten zusätzlich die Bedingungen von Lieferando.at.
+  </p>
+
+  <h2>2. Vertragsabschluss</h2>
+  <p>
+    Vor Ort kommt der Vertrag zustande, wenn wir deine Bestellung an der Theke annehmen. Bei telefonischer Bestellung kommt
+    der Vertrag zustande, wenn wir die Bestellung am Telefon mündlich bestätigen.
+  </p>
+
+  <h2>3. Preise</h2>
+  <p>Es gelten die Preise der aktuellen Speisekarte. Alle Preise sind in Euro und enthalten die gesetzliche Umsatzsteuer.</p>
+
+  <h2>4. Bezahlung</h2>
+  <p>
+    Bezahlt wird bei Abholung. Möglich sind: {betrieb.bezahlen.length ? betrieb.bezahlen.join(', ') : <Fehlt>Zahlungsarten</Fehlt>}.
+  </p>
+
+  <h2>5. Abholung</h2>
+  <p>
+    Telefonische Bestellungen holst du zur vereinbarten Zeit bei uns ab. Die Speisen sind frisch zubereitet und zum sofortigen
+    Verzehr bestimmt.
+  </p>
+
+  <h2>6. Allergene</h2>
+  <p>Informationen zu Allergenen bekommst du an der Theke, telefonisch und auf der Seite <a href="/allergene/">Allergene</a>.</p>
+
+  <h2>7. Stornierung</h2>
+  <p>Eine Bestellung kannst du kostenlos stornieren, solange wir mit der Zubereitung noch nicht begonnen haben. Ruf uns dafür an.</p>
+
+  <h2>8. Kein Rücktrittsrecht</h2>
+  <p>
+    Bei telefonischen Bestellungen besteht kein Rücktrittsrecht, weil es sich um Waren handelt, die schnell verderben können
+    (§ 18 Abs. 1 Z 4 Fern- und Auswärtsgeschäfte-Gesetz, FAGG).
+  </p>
+
+  <h2>9. Gewährleistung</h2>
+  <p>Es gilt die gesetzliche Gewährleistung. Mängel meldest du bitte sofort bei der Abholung oder telefonisch.</p>
+
+  <h2>10. Anwendbares Recht</h2>
+  <p>Es gilt österreichisches Recht. Zwingende Bestimmungen des Konsumentenschutzgesetzes bleiben unberührt.</p>
+
+  <p class="muted">Stand: September 2026</p>
+</Legal>

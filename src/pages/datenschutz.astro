@@ -1,0 +1,74 @@
+---
+import Legal from '../layouts/Legal.astro';
+import Fehlt from '../components/Fehlt.astro';
+import betrieb from '../data/betrieb.json';
+import { telLink } from '../lib/links.mjs';
+---
+
+<Legal
+  title="Datenschutzerklärung | Çukur Wien"
+  description="Datenschutzerklärung der Website von Çukur, Wallensteinplatz 3-4, 1200 Wien."
+  h1="Datenschutzerklärung"
+>
+  <h2>1. Verantwortlich</h2>
+  <p>
+    {betrieb.name}, Inhaber: {betrieb.inhaber || <Fehlt>voller Name</Fehlt>}<br />
+    {betrieb.adresse.strasse}, {betrieb.adresse.plz} {betrieb.adresse.ort}, Österreich<br />
+    Telefon: <a href={telLink(betrieb)}>{betrieb.telefon.anzeige}</a><br />
+    E-Mail: {betrieb.email ? <a href={`mailto:${betrieb.email}`}>{betrieb.email}</a> : <Fehlt>E-Mail-Adresse</Fehlt>}
+  </p>
+
+  <h2>2. Hosting und Server-Logfiles</h2>
+  <p>Diese Website liegt bei {betrieb.hosting || <Fehlt>Name und Anschrift des Hosting-Anbieters</Fehlt>}.</p>
+  <p>
+    Beim Aufruf einer Seite verarbeitet der Server automatisch Daten, die dein Browser übermittelt: IP-Adresse, Datum und
+    Uhrzeit, aufgerufene Seite, zuvor besuchte Seite, Browser und Betriebssystem. Das ist für einen sicheren und stabilen
+    Betrieb nötig. Rechtsgrundlage ist unser berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO. Die Logdaten werden
+    nach <Fehlt>Speicherdauer laut Hosting-Anbieter</Fehlt> gelöscht.
+  </p>
+
+  <h2>3. Kontakt per Telefon oder E-Mail</h2>
+  <p>
+    Wenn du uns anrufst oder schreibst, verarbeiten wir deine Angaben, um deine Anfrage oder Bestellung zu bearbeiten.
+    Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, wenn es um eine Bestellung geht, sonst Art. 6 Abs. 1 lit. f DSGVO. Wir
+    löschen die Daten, sobald wir sie nicht mehr brauchen und keine gesetzliche Aufbewahrungspflicht besteht.
+  </p>
+
+  <h2>4. Google Maps</h2>
+  <p>
+    Die Karte ist beim Aufruf der Seite nicht geladen. Erst wenn du auf „Karte laden (Google Maps)“ klickst, baut dein
+    Browser eine Verbindung zu Google auf. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4,
+    Irland. Dabei werden unter anderem deine IP-Adresse und Angaben zu deinem Browser an Google übertragen, auch in die USA.
+    Google ist nach dem EU-US Data Privacy Framework zertifiziert. Rechtsgrundlage ist deine Einwilligung durch den Klick
+    nach Art. 6 Abs. 1 lit. a DSGVO. Sie gilt nur für den aktuellen Seitenaufruf.
+  </p>
+  <p>
+    Die Links „Route planen“ und die Adresse öffnen Google Maps. Daten gehen erst an Google, wenn du einen dieser Links
+    anklickst.
+  </p>
+
+  <h2>5. Lieferando</h2>
+  <p>
+    Unsere Links zu Lieferando.at führen auf eine andere Website. Daten gehen erst an Lieferando, wenn du einen Link
+    anklickst. Für Bestellungen über Lieferando gilt die Datenschutzerklärung von Lieferando.at.
+  </p>
+
+  <h2>6. Schriftarten</h2>
+  <p>Die Schriftarten liegen auf unserem eigenen Server. Beim Laden entsteht keine Verbindung zu Google Fonts oder anderen Anbietern.</p>
+
+  <h2>7. Cookies und Analyse</h2>
+  <p>Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Tools.</p>
+
+  <h2>8. Deine Rechte</h2>
+  <p>
+    Du hast das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der
+    Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Eine erteilte Einwilligung kannst du
+    jederzeit für die Zukunft widerrufen. Wende dich dafür an die oben genannten Kontaktdaten.
+  </p>
+  <p>
+    Du kannst dich außerdem bei der Aufsichtsbehörde beschweren: Österreichische Datenschutzbehörde, Barichgasse 40-42,
+    1030 Wien, <a href="https://www.dsb.gv.at">www.dsb.gv.at</a>.
+  </p>
+
+  <p class="muted">Stand: September 2026</p>
+</Legal>

@@ -1,0 +1,138 @@
+{
+  "kategorien": [
+    {
+      "id": "doener",
+      "name": "Döner",
+      "hinweis": "Döner mit Hühnerfleisch. Dürüm im hausgemachten Brot.",
+      "artikel": [
+        { "name": "Hühner Döner", "beschreibung": "Hühnerfleisch, gemischter Salat, zwei Saucen nach Wahl, scharf", "preise": [{ "label": "", "preis": 6.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pommdöner", "beschreibung": "Hühnerfleisch, Pommes, zwei Saucen nach Wahl, scharf", "preise": [{ "label": "", "preis": 6.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Hühner Dürüm", "beschreibung": "", "preise": [{ "label": "", "preis": 7.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pommes Dürüm", "beschreibung": "Mit Hühnerfleisch und Pommes", "preise": [{ "label": "", "preis": 8.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Hühner Bowl", "beschreibung": "", "preise": [{ "label": "Klein", "preis": 5.0 }, { "label": "Groß", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Döner Portion", "beschreibung": "Hühnerfleisch", "preise": [{ "label": "Klein", "preis": 6.0 }, { "label": "Groß", "preis": 8.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Hühner Teller", "beschreibung": "", "preise": [{ "label": "", "preis": 10.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    },
+    {
+      "id": "falafel",
+      "name": "Falafel",
+      "hinweis": "",
+      "artikel": [
+        { "name": "Falafel Sandwich", "beschreibung": "Falafel, Hummus, gemischter Salat, zwei Saucen nach Wahl, scharf", "preise": [{ "label": "", "preis": 5.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Falafel Dürüm", "beschreibung": "", "preise": [{ "label": "", "preis": 6.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Falafel Bowl", "beschreibung": "", "preise": [{ "label": "Klein", "preis": 5.0 }, { "label": "Groß", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Falafel Teller", "beschreibung": "", "preise": [{ "label": "", "preis": 10.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    },
+    {
+      "id": "vegetarisch",
+      "name": "Vegetarisch",
+      "hinweis": "",
+      "artikel": [
+        { "name": "Vegetarisches Sandwich", "beschreibung": "Gemischter Salat, Schafskäse, zwei Saucen nach Wahl, scharf", "preise": [{ "label": "", "preis": 5.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": true, "vegan": false },
+        { "name": "Vegetarischer Dürüm", "beschreibung": "", "preise": [{ "label": "", "preis": 6.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": true, "vegan": false },
+        { "name": "Vegetarische Bowl", "beschreibung": "", "preise": [{ "label": "Klein", "preis": 5.0 }, { "label": "Groß", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": true, "vegan": false },
+        { "name": "Vegetarischer Teller", "beschreibung": "", "preise": [{ "label": "", "preis": 10.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": true, "vegan": false }
+      ]
+    },
+    {
+      "id": "schnitzel",
+      "name": "Schnitzel",
+      "hinweis": "",
+      "artikel": [
+        { "name": "Schnitzelsemmel", "foto": "schnitzelsemmel","beschreibung": "", "preise": [{ "label": "", "preis": 4.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Schnitzel Dürüm", "beschreibung": "", "preise": [{ "label": "", "preis": 6.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Schnitzel Bowl", "beschreibung": "", "preise": [{ "label": "Klein", "preis": 5.5 }, { "label": "Groß", "preis": 7.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Schnitzelteller", "beschreibung": "", "preise": [{ "label": "", "preis": 10.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    },
+    {
+      "id": "pizza",
+      "name": "Pizza",
+      "hinweis": "Jede Pizza gibt es in 24, 33 und 50 cm.",
+      "artikel": [
+        { "name": "Margherita", "beschreibung": "Sauce, Käse", "preise": [{ "label": "24 cm", "preis": 3.5 }, { "label": "33 cm", "preis": 7.0 }, { "label": "50 cm", "preis": 12.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Rindssalami", "beschreibung": "Käse, Salami", "preise": [{ "label": "24 cm", "preis": 4.0 }, { "label": "33 cm", "preis": 7.5 }, { "label": "50 cm", "preis": 12.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Putenschinken", "beschreibung": "Käse, Schinken", "preise": [{ "label": "24 cm", "preis": 4.0 }, { "label": "33 cm", "preis": 7.5 }, { "label": "50 cm", "preis": 12.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Altona", "foto": "altona","beschreibung": "Käse, Thunfisch, Zwiebel", "preise": [{ "label": "24 cm", "preis": 4.0 }, { "label": "33 cm", "preis": 7.5 }, { "label": "50 cm", "preis": 12.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Funghi", "beschreibung": "Käse, Champignons", "preise": [{ "label": "24 cm", "preis": 4.0 }, { "label": "33 cm", "preis": 7.5 }, { "label": "50 cm", "preis": 12.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Melanzani", "beschreibung": "Käse, Melanzani, Paprika, Mais", "preise": [{ "label": "24 cm", "preis": 4.5 }, { "label": "33 cm", "preis": 8.0 }, { "label": "50 cm", "preis": 13.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Diavolo", "foto": "diavolo","beschreibung": "Käse, Salami, scharfe Pfefferoni, Zwiebel", "preise": [{ "label": "24 cm", "preis": 4.5 }, { "label": "33 cm", "preis": 8.0 }, { "label": "50 cm", "preis": 13.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Spinat", "foto": "spinat","beschreibung": "Käse, Spinat, Schafskäse", "preise": [{ "label": "24 cm", "preis": 4.5 }, { "label": "33 cm", "preis": 8.0 }, { "label": "50 cm", "preis": 13.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Vegetarisch", "beschreibung": "Käse, Brokkoli, Champignons, Mais", "preise": [{ "label": "24 cm", "preis": 4.5 }, { "label": "33 cm", "preis": 8.0 }, { "label": "50 cm", "preis": 13.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": true, "vegan": false },
+        { "name": "Döner Pizza", "beschreibung": "Käse, Hühnerfleisch, Paprika, Dönersauce", "preise": [{ "label": "24 cm", "preis": 5.0 }, { "label": "33 cm", "preis": 9.0 }, { "label": "50 cm", "preis": 14.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Urmiye", "beschreibung": "Käse, Schinken, Salami, Champignons, Mais", "preise": [{ "label": "24 cm", "preis": 5.0 }, { "label": "33 cm", "preis": 9.0 }, { "label": "50 cm", "preis": 14.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Quattro Formaggi", "foto": "quattro-formaggi","beschreibung": "Vier verschiedene Käsesorten", "preise": [{ "label": "24 cm", "preis": 5.5 }, { "label": "33 cm", "preis": 9.0 }, { "label": "50 cm", "preis": 15.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Provinciale", "foto": "provinciale","beschreibung": "Käse, Schinken, milde Pfefferoni, Mais", "preise": [{ "label": "24 cm", "preis": 5.5 }, { "label": "33 cm", "preis": 9.0 }, { "label": "50 cm", "preis": 15.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pizza Çukur", "beschreibung": "Käse, Salami, Champignons, Mais, Hühnerfleisch, Dönersauce", "preise": [{ "label": "24 cm", "preis": 6.0 }, { "label": "33 cm", "preis": 10.0 }, { "label": "50 cm", "preis": 16.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Wunschpizza", "beschreibung": "Käse und vier Zutaten nach Wahl", "preise": [{ "label": "24 cm", "preis": 6.0 }, { "label": "33 cm", "preis": 10.0 }, { "label": "50 cm", "preis": 16.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    },
+    {
+      "id": "pide",
+      "name": "Pide",
+      "hinweis": "",
+      "artikel": [
+        { "name": "Pide mit Dönerfleisch", "beschreibung": "Hühnerfleisch", "preise": [{ "label": "", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pide mit Thunfisch", "beschreibung": "Thunfisch, Oliven, Zwiebel", "preise": [{ "label": "", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pide mit Salami", "beschreibung": "Salami, Eier", "preise": [{ "label": "", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pide mit Schafskäse", "beschreibung": "Schafskäse, Eier", "preise": [{ "label": "", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pide mit Champignons", "beschreibung": "Champignons, Eier", "preise": [{ "label": "", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    },
+    {
+      "id": "salate",
+      "name": "Salate",
+      "hinweis": "",
+      "artikel": [
+        { "name": "Gemischter Salat", "foto": "gemischter-salat","beschreibung": "", "preise": [{ "label": "", "preis": 6.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Thunfischsalat", "foto": "thunfischsalat","beschreibung": "", "preise": [{ "label": "", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Hirtensalat", "foto": "hirtensalat","beschreibung": "", "preise": [{ "label": "", "preis": 7.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    },
+    {
+      "id": "pommes",
+      "name": "Pommes und Reis",
+      "hinweis": "",
+      "artikel": [
+        { "name": "Klassik Pommes", "beschreibung": "", "preise": [{ "label": "", "preis": 3.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Premium Pommes", "beschreibung": "", "preise": [{ "label": "", "preis": 4.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Wedges", "foto": "wedges","beschreibung": "", "preise": [{ "label": "", "preis": 4.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pommes mit Käse überbacken", "beschreibung": "", "preise": [{ "label": "", "preis": 6.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Reis Portion", "foto": "reis","beschreibung": "", "preise": [{ "label": "", "preis": 5.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    },
+    {
+      "id": "extras",
+      "name": "Saucen und Extras",
+      "hinweis": "",
+      "artikel": [
+        { "name": "Ketchup", "beschreibung": "", "preise": [{ "label": "", "preis": 0.7 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Mayonnaise", "beschreibung": "", "preise": [{ "label": "", "preis": 0.7 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Gemischte Sauce", "beschreibung": "", "preise": [{ "label": "", "preis": 0.7 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Schafskäse", "beschreibung": "", "preise": [{ "label": "", "preis": 0.7 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Brot", "foto": "brot","beschreibung": "", "preise": [{ "label": "", "preis": 0.7 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    },
+    {
+      "id": "getraenke",
+      "name": "Getränke",
+      "hinweis": "",
+      "artikel": [
+        { "name": "Ayran", "foto": "ayran","beschreibung": "", "preise": [{ "label": "", "preis": 2.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Coca-Cola", "beschreibung": "", "preise": [{ "label": "0,33 l", "preis": 3.0 }, { "label": "0,5 l", "preis": 3.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Coca-Cola Zero", "beschreibung": "0,33 l", "preise": [{ "label": "", "preis": 3.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Pepsi", "beschreibung": "0,33 l", "preise": [{ "label": "", "preis": 3.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Fanta", "beschreibung": "0,5 l", "preise": [{ "label": "", "preis": 3.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Limonade", "beschreibung": "0,33 l", "preise": [{ "label": "", "preis": 3.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Rauch Eistee Pfirsich", "beschreibung": "0,33 l", "preise": [{ "label": "", "preis": 3.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Rauch Eistee Zitrone", "beschreibung": "0,33 l", "preise": [{ "label": "", "preis": 3.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Eistee Pfirsich", "beschreibung": "0,5 l", "preise": [{ "label": "", "preis": 3.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Eistee Zitrone", "beschreibung": "0,5 l", "preise": [{ "label": "", "preis": 3.5 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Wild Dragon", "beschreibung": "0,33 l", "preise": [{ "label": "", "preis": 3.0 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false },
+        { "name": "Red Bull", "beschreibung": "0,25 l", "preise": [{ "label": "", "preis": 3.8 }], "allergene": [], "zusatzstoffe": [], "vegetarisch": false, "vegan": false }
+      ]
+    }
+  ]
+}

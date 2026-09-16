@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import Status from '../components/Status.astro';
+import Oeffnungszeiten from '../components/Oeffnungszeiten.astro';
+import Karte from '../components/Karte.astro';
+import Icon from '../components/Icon.astro';
+import betrieb from '../data/betrieb.json';
+import { adresseText, mapsSuche, telLink } from '../lib/links.mjs';
+import { kompakteZeitenText } from '../lib/format.mjs';
+import { restaurantJsonLd } from '../lib/jsonld.mjs';
+
+const adresse = adresseText(betrieb);
+const title = 'Kontakt und Anfahrt | Çukur, Wallensteinplatz 3-4, 1200 Wien';
+const description = `So findest du Çukur: ${adresse}. Telefon ${betrieb.telefon.anzeige}. ${kompakteZeitenText(betrieb.oeffnungszeiten)}.`;
+---
+
+<Layout title={title} description={description} jsonLd={restaurantJsonLd(betrieb, Astro.site)}>
+  <div class="wrap section">
+    <h1>Kontakt und Anfahrt</h1>
+    <div class="split">
+      <div data-reveal="up">
+        <h2 class="h2-klein">Adresse und Telefon</h2>
+        <ul class="info-list">
+          <li><Icon name="pin" /><a href={mapsSuche(adresse)}>{adresse}</a></li>
+          <li><Icon name="phone" /><a href={telLink(betrieb)}>{betrieb.telefon.anzeige}</a></li>
+          <li><Icon name="clock" /><Status /></li>
+        </ul>
+        {betrieb.email && <p><a href={`mailto:${betrieb.email}`}>{betrieb.email}</a></p>}
+
+        <h2 class="h2-klein">Öffnungszeiten</h2>
+        <Oeffnungszeiten />
+      </div>
+      <div data-reveal="up" style="--i: 1">
+        <Photo alt="Ladenfront von Çukur am Wallensteinplatz" ratio="3 / 2" sizes="(min-width: 900px) 50vw, 100vw" />
+        <h2 class="h2-klein" style="margin-top: 32px">Karte</h2>
+        <Karte />
+      </div>
+    </div>
+  </div>
+</Layout>

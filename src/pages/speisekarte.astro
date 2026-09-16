@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import betrieb from '../data/betrieb.json';
+import { kategorien, spalten, abPreis, hatAllergendaten } from '../lib/menu.mjs';
+import { foto } from '../lib/fotos';
+import { preis } from '../lib/format.mjs';
+import { telLink } from '../lib/links.mjs';
+
+const hatFotos = kategorien.some((k) => k.artikel.some((a) => a.foto && foto(a.foto)));
+const title = 'Speisekarte | Çukur Wien 1200: Döner, Pizza, Falafel';
+const description = `Speisekarte von Çukur, ${betrieb.adresse.strasse}, 1200 Wien: Döner ab ${preis(abPreis('doener'))}, Pizza in 24, 33 und 50 cm ab ${preis(abPreis('pizza'))}, Falafel, Pide, Schnitzel und Getränke.`;
+---
+
+<Layout title={title} description={description}>
+  <div class="wrap menu-head">
+    <h1>Speisekarte</h1>
+    {
+      !hatAllergendaten && (
+        <p>
+          Allergeninformationen bekommst du an der Theke oder unter <a href={telLink(betrieb)}>{betrieb.telefon.anzeige}</a>.
+        </p>
+      )
+    }
+    {hatFotos && <p class="small muted">Alle Fotos sind Symbolbilder.</p>}
+  </div>
+
+  <nav class="catbar" aria-label="Kategorien der Speisekarte" data-catbar>
+    <ul>
+      {kategorien.map((k) => <li><a href={`#${k.id}`}>{k.name}</a></li>)}
+    </ul>
+  </nav>
+
+  <div class="wrap menu-list">
+    {
+      kategorien.map((k) => {
+        const sp = spalten(k);
+        return (
+          <section id={k.id} class="menu-kat" aria-labelledby={`${k.id}-h`}>
+            <h2 id={`${k.id}-h`}>{k.name}</h2>
+            {k.hinweis && <p class="kat-hinweis">{k.hinweis}</p>}
+            <table class:list={['menu-table', { 'mit-spalten': sp }]}>
+              <caption class="visually-hidden">{k.name}, Preise in Euro</caption>
+              <thead class:list={{ 'visually-hidden': !sp }}>
+                <tr>
+                  <th scope="col">Gericht</th>
+                  {sp ? (
+                    sp.map((label) => (
+                      <th scope="col" class="num">
+                        {label}
+                      </th>
+                    ))
+                  ) : (
+                    <th scope="col" class="num">
+                      Preis
+                    </th>
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {k.artikel.map((a) => {
+                  const codes = [...a.allergene, ...a.zusatzstoffe].join(', ');
+                  const bild = foto(a.foto);
+                  return (
+                    <tr>
+                      <th scope="row">
+                        <div class="item">
+                          {bild && (
+                            <Photo
+                              class="item-thumb"
+                              src={bild}
+                              alt={`Symbolbild: ${a.name}`}
+                              widths={[168, 336]}
+                              sizes="84px"
+                            />
+                          )}
+                          <div>
+                            <span class="item-name">{a.name}</span>
+                            {codes && <sup>{codes}</sup>}
+                            {a.vegan ? <span class="tag">vegan</span> : a.vegetarisch && <span class="tag">vegetarisch</span>}
+                            {a.beschreibung && <span class="item-desc">{a.beschreibung}</span>}
+                          </div>
+                        </div>
+                      </th>
+                      {sp ? (
+                        a.preise.map((p) => <td class="num">{preis(p.preis)}</td>)
+                      ) : (
+                        <td class="num">
+                          {a.preise.length === 1 ? (
+                            preis(a.preise[0].preis)
+                          ) : (
+                            <ul class="varianten">
+                              {a.preise.map((p) => (
+                                <li>
+                                  <span class="var-label">{p.label}</span>
+                                  <span>{preis(p.preis)}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </section>
+        );
+      })
+    }
+    <p class="menu-foot">
+      Alle Preise in Euro inkl. MwSt. <a href="/allergene/">Allergene und Zusatzstoffe</a>
+    </p>
+  </div>
+</Layout>
+
+<style is:global>
+  html {
+    scroll-padding-top: 132px;
+  }
+</style>
+
+<script>
+  import '../scripts/catbar.js';
+</script>

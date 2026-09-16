@@ -1,0 +1,23 @@
+---
+import betrieb from '../data/betrieb.json';
+import { zeitraum } from '../lib/format.mjs';
+---
+
+<table class="hours" data-oeffnungstabelle data-zeitzone={betrieb.zeitzone}>
+  <caption class="visually-hidden">Öffnungszeiten pro Wochentag</caption>
+  <tbody>
+    {
+      betrieb.oeffnungszeiten.map((t, i) => (
+        <tr data-tag={i}>
+          <th scope="row">{t.tag}</th>
+          <td>{t.zeiten.length ? t.zeiten.map((z) => zeitraum(z.von, z.bis)).join(', ') : 'Ruhetag'}</td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+{betrieb.feiertage && <p class="small">{betrieb.feiertage}</p>}
+
+<script>
+  import '../scripts/status.js';
+</script>

@@ -19,13 +19,12 @@ const { lieferando, telefonisch } = betrieb.bestellen;
 
 const bloecke = [
   {
-    id: 'doener',
-    titel: 'Döner',
-    text: 'Hühnerfleisch im Brot, als Dürüm im hausgemachten Brot, als Bowl oder auf dem Teller.',
-    // Real photo from the owner: src/assets/fotos/doener.jpg
-    foto: 'doener',
-    symbolbild: false,
-    alt: 'Döner von Çukur',
+    id: 'schnitzel',
+    titel: 'Schnitzel',
+    text: 'Als Schnitzelsemmel, im Dürüm, als Bowl oder auf dem Teller.',
+    foto: 'schnitzelsemmel',
+    symbolbild: true,
+    alt: 'Symbolbild: Schnitzelsemmel',
   },
   {
     id: 'pizza',
@@ -36,13 +35,12 @@ const bloecke = [
     alt: 'Symbolbild: Pizza Diavolo mit Salami, scharfen Pfefferoni und Zwiebel',
   },
   {
-    id: 'falafel',
-    titel: 'Falafel',
-    text: 'Im Brot mit Hummus, als Dürüm, als Bowl oder auf dem Teller.',
-    // Real photo from the owner: src/assets/fotos/falafel.jpg
-    foto: 'falafel',
-    symbolbild: false,
-    alt: 'Falafel von Çukur',
+    id: 'salate',
+    titel: 'Salate',
+    text: 'Gemischter Salat, Thunfischsalat oder Hirtensalat.',
+    foto: 'hirtensalat',
+    symbolbild: true,
+    alt: 'Symbolbild: Hirtensalat',
   },
 ];
 
@@ -116,7 +114,7 @@ const description = `Çukur am ${betrieb.adresse.strasse}, ${betrieb.adresse.plz
         }
       </div>
       <p class="weitere" data-reveal="blur">
-        Außerdem auf der Karte: vegetarische Gerichte, Schnitzel, Pide, Salate, Pommes und Getränke.
+        Außerdem auf der Karte: Döner, Falafel, vegetarische Gerichte, Pide, Pommes und Getränke.
         <a href="/speisekarte/">Ganze Speisekarte</a>
       </p>
     </div>
